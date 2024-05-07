@@ -222,7 +222,7 @@ export class Client {
 
     const message = `Start monitoring account : ${this.email}`;
     logger.info(message);
-    this.notifiers.forEach((notifier) => notifier.sendNotification(NotificationType.START, message));
+    // this.notifiers.forEach((notifier) => notifier.sendNotification(NotificationType.START, message));
     return true;
   };
 
