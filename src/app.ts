@@ -5,7 +5,7 @@ import { ACCOUNTS, TEST_NOTIFIERS } from './config.js';
 import { logger } from './common/logger.js';
 import { Client } from './client.js';
 
-export const JOB: Cron = Cron('* * * * *', { protect: true });
+export const JOB: Cron = Cron('0 6-23 * * *', { protect: true }); // Every day from 6am to 11pm
 
 const main = async (): Promise<void> => {
   const clientsToMonitor: Client[] = [];
