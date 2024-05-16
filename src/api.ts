@@ -37,7 +37,7 @@ class TGTG_API {
       // Because sometimes res.json() throw an error
       const json = JSON.parse(await res.text());
       controller.abort();
-      logger.info(json);
+      logger.info(json.items);
       return json;
     }
 
