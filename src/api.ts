@@ -31,6 +31,11 @@ class TGTG_API {
 
     this.cookie = res.headers['set-cookie']?.toString().split(';')[0] as string;
 
+    const success = res.statusCode >= 200 && res.statusCode < 300;
+    const status = success ? 'up' : 'down';
+    const heartbeatUrl = `https://kuma.moumou.land/api/push/zVAgEQWJ1i?status=${status}&msg=${res.statusCode}&ping=`;
+    fetch(heartbeatUrl);
+
     if (res.statusCode >= 200 && res.statusCode < 300) {
       this.captchaError = 0;
       if (endpoint === ENDPOINT.AUTH_POLLING && res.statusCode === 202) return res;
