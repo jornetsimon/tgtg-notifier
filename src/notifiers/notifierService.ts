@@ -1,11 +1,10 @@
 import { Logger } from 'winston';
 
-import { parseStoreItem } from '../../common/utils';
-import { NotificationType } from '../service';
-import { logger } from '../../common/logger';
-import { NotifierConfig } from './config';
+import { parseStoreItem } from '../common/utils.js';
+import { NotifierConfig } from './config/index.js';
+import { logger } from '../common/logger.js';
 
-export abstract class Notifier {
+export abstract class NotifierService {
   protected abstract readonly request: Request;
   protected abstract readonly config: NotifierConfig;
 
@@ -31,4 +30,17 @@ export abstract class Notifier {
   protected jsonPayload = (body: object): string => JSON.stringify(body);
 
   public getType = () => this.config.type;
+}
+
+export enum NotifierType {
+  DISCORD = 'discord',
+  GOTIFY = 'gotify',
+  NTFY = 'ntfy',
+  SIGNAL = 'signal',
+  TELEGRAM = 'telegram',
+}
+
+export enum NotificationType {
+  START,
+  NEW_ITEM,
 }

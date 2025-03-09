@@ -1,7 +1,7 @@
 import { IsInt, IsOptional, IsString, IsUrl, Max, Min } from 'class-validator';
 
-import { NotifierType } from '../service';
-import { NotifierConfig } from '../base';
+import { NotifierType } from '../notifierService.js';
+import { NotifierConfig } from './notifierConfig.js';
 
 export class NtfyConfig extends NotifierConfig {
   readonly icon = 'https://cdn.jsdelivr.net/gh/Nyrrell/tgtg-notifier@master/media/logo.png';

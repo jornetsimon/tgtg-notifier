@@ -1,7 +1,7 @@
 import { IsUrl } from 'class-validator';
 
-import { NotifierType } from '../service';
-import { NotifierConfig } from '../base';
+import { NotifierType } from '../notifierService.js';
+import { NotifierConfig } from './notifierConfig.js';
 
 export class DiscordConfig extends NotifierConfig {
   readonly avatar = 'https://cdn.jsdelivr.net/gh/Nyrrell/tgtg-notifier@master/media/logo.png';

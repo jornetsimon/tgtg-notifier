@@ -1,8 +1,8 @@
-import { PRICE, STOCK } from '../../config';
-import { NtfyConfig } from './config';
-import { Notifier } from '../base';
+import { NotifierService } from './notifierService.js';
+import { NtfyConfig } from './config/index.js';
+import { PRICE, STOCK } from '../config.js';
 
-export class Ntfy extends Notifier {
+export class Ntfy extends NotifierService {
   protected readonly request: Request;
   protected readonly config: NtfyConfig;
 

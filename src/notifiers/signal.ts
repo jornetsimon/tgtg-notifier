@@ -1,8 +1,8 @@
-import { PRICE, STOCK } from '../../config';
-import { SignalConfig } from './config';
-import { Notifier } from '../base';
+import { NotifierService } from './notifierService.js';
+import { SignalConfig } from './config/index.js';
+import { PRICE, STOCK } from '../config.js';
 
-export class Signal extends Notifier {
+export class Signal extends NotifierService {
   protected readonly request: Request;
   protected readonly config: SignalConfig;
 

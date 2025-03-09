@@ -1,24 +1,51 @@
-import { setNotifiers, NotificationType } from './notifiers/service';
-import { Notifier, NotifierConfig } from './notifiers/base';
-import { SEND_START_NOTIFICATION } from './config';
-import { sleep, TEST_ITEM } from './common/utils';
-import { ApiError } from './common/errors';
-import { logger } from './common/logger';
-import database from './database';
-import api from './api';
+import { NotificationType, NotifierService, NotifierType } from './notifiers/notifierService.js';
+import { Discord, Gotify, Ntfy, Signal, Telegram } from './notifiers/index.js';
+import { SEND_START_NOTIFICATION } from './config.js';
+import { sleep, TEST_ITEM } from './common/utils.js';
+import { ApiError } from './common/errors.js';
+import { logger } from './common/logger.js';
+import database from './database.js';
+import api from './api.js';
+import {
+  NotifierConfig,
+  TelegramConfig,
+  DiscordConfig,
+  GotifyConfig,
+  SignalConfig,
+  NtfyConfig,
+} from './notifiers/config/index.js';
 
 export class Client {
   private readonly email: string;
   private accessToken: string;
   private refreshToken: string;
-  private readonly notifiers: Array<Notifier>;
+  private readonly notifiers: Array<NotifierService>;
   private readonly maxPollingTries: Array<number> = new Array(24);
 
   constructor(user: ACCOUNT) {
     this.email = user['email'];
     this.accessToken = user['accessToken'];
     this.refreshToken = user['refreshToken'];
-    this.notifiers = setNotifiers(user['notifiers'] as Array<NotifierConfig>);
+    this.notifiers = this.setNotifiers(user['notifiers'] as Array<NotifierConfig>);
+  }
+
+  private setNotifiers(notifierConfigs: Array<NotifierConfig>) {
+    return notifierConfigs.map((notifier): NotifierService => {
+      switch (notifier.type) {
+        case NotifierType.DISCORD:
+          return new Discord(notifier as DiscordConfig);
+        case NotifierType.GOTIFY:
+          return new Gotify(notifier as GotifyConfig);
+        case NotifierType.SIGNAL:
+          return new Signal(notifier as SignalConfig);
+        case NotifierType.TELEGRAM:
+          return new Telegram(notifier as TelegramConfig);
+        case NotifierType.NTFY:
+          return new Ntfy(notifier as NtfyConfig);
+        default:
+          throw new Error(`Unexpected notifier config: ${notifier.type}`);
+      }
+    });
   }
 
   get credentials() {

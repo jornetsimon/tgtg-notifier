@@ -1,8 +1,8 @@
-import { PRICE, STOCK } from '../../config';
-import { DiscordConfig } from './config';
-import { Notifier } from '../base';
+import { NotifierService } from './notifierService.js';
+import { DiscordConfig } from './config/index.js';
+import { PRICE, STOCK } from '../config.js';
 
-export class Discord extends Notifier {
+export class Discord extends NotifierService {
   protected readonly request: Request;
   protected readonly config: DiscordConfig;
 
