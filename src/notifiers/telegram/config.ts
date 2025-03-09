@@ -1,8 +1,8 @@
 import { IsNumber, IsOptional, IsString, IsUrl, Validate } from 'class-validator';
 
-import { IsNumberOrString } from '../../common/IsNumberOrString.js';
-import { NotifierType } from '../notifierService.js';
-import { NotifierConfig } from './notifierConfig.js';
+import { IsNumberOrString } from '../../common/IsNumberOrString';
+import { NotifierType } from '../service';
+import { NotifierConfig } from '../base';
 
 export class TelegramConfig extends NotifierConfig {
   @IsUrl()

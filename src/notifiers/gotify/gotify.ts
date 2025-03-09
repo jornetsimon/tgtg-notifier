@@ -1,8 +1,8 @@
-import { NotifierService } from './notifierService.js';
-import { GotifyConfig } from './config/index.js';
-import { PRICE, STOCK } from '../config.js';
+import { PRICE, STOCK } from '../../config';
+import { GotifyConfig } from './config';
+import { Notifier } from '../base';
 
-export class Gotify extends NotifierService {
+export class Gotify extends Notifier {
   protected readonly request: Request;
   protected readonly config: GotifyConfig;
 

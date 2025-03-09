@@ -1,7 +1,7 @@
 import { IsBoolean, IsOptional, IsString, IsUrl } from 'class-validator';
 
-import { NotifierType } from '../notifierService.js';
-import { NotifierConfig } from './notifierConfig.js';
+import { NotifierType } from '../service';
+import { NotifierConfig } from '../base';
 
 export class SignalConfig extends NotifierConfig {
   @IsUrl()
