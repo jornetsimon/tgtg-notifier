@@ -7,10 +7,14 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node16",
+    "moduleResolution": "Node",
     "noImplicitAny": true,
     "alwaysStrict": true
   },
   "include": ["./src/**/*"],
-  "files": ["src/@types/index.d.ts"]
+  "ts-node": {
+    "experimentalSpecifierResolution": "node",
+    "transpileOnly": true,
+    "esm": true,
+  }
 }
