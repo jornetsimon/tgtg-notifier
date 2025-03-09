@@ -1,9 +1,9 @@
 import { exit, env } from 'node:process';
 
-import { ACCOUNTS, TEST_NOTIFIERS } from './config';
-import { logger } from './common/logger';
-import { JOB } from './common/job';
-import { Client } from './client';
+import { ACCOUNTS, TEST_NOTIFIERS } from './config.js';
+import { logger } from './common/logger.js';
+import { JOB } from './common/job.js';
+import { Client } from './client.js';
 
 const main = async (): Promise<void> => {
   const clientsToMonitor: Client[] = [];

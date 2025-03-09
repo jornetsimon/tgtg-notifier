@@ -1,6 +1,6 @@
-import { ACCOUNTS } from '../src/config';
-import { Client } from '../src/client';
-import database from '../src/database';
+import { ACCOUNTS } from '../src/config.js';
+import { Client } from '../src/client.js';
+import database from '../src/database.js';
 
 const [account] = ACCOUNTS;
 const client = new Client(account);
