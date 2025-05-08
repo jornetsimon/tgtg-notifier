@@ -32,6 +32,11 @@ class TGTG_API {
     this.xCorrelationId = res.headers.get('x-correlation-id');
     const data = await res.text();
 
+    const success = res.status >= 200 && res.status < 300;
+    const status = success ? 'up' : 'down';
+    const heartbeatUrl = `https://kuma.moumou.land/api/push/zVAgEQWJ1i?status=${status}&msg=${res.status}&ping=`;
+    fetch(heartbeatUrl);
+
     if (endpoint === ENDPOINT.AUTH_POLLING && res.status === 202) return { polling: true } as T;
 
     if (res.status >= 200 && res.status < 300) {
